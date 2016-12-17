@@ -1,6 +1,6 @@
-#### Template Script for RTL->Gate-Level Flow (generated from RC v07.20-s021_1) 
+#### Template Script for RTL->Gate-Level Flow (generated from RC v07.20-s021_1)
 ### Optimized by MBF
-## source ../scripts/config_cadence_ucpel 
+## source ../scripts/config_cadence_ucpel
 ## rc -files ../scripts/setupe.tcl
 
 
@@ -21,7 +21,7 @@ include load_etc.tcl
 ##############################################################################
 # Top module name.
 set DESIGN  driverclk
-set DUT DUT 
+set DUT DUT
 #  RCA_hib10bm2 hib_v1  RCA_hib10bm2v2 hib_v2   RCA_hib10bm2v3 hib_v3
 
 #lms=entidadetop nlms=filtros
@@ -50,8 +50,8 @@ set_attribute information_level 5 /
 # mw uW nW
 set_attribute lp_power_unit uW /
 
-#To issue an error when a latch is inferred, set the 'hdl_error_on_latch' attribute to 'true'. 
-#To infer combinational logic rather than a latch when a variable is explicitly assigned to itself, 
+#To issue an error when a latch is inferred, set the 'hdl_error_on_latch' attribute to 'true'.
+#To infer combinational logic rather than a latch when a variable is explicitly assigned to itself,
 #  set the 'hdl_latch_keep_feedback' attribute to 'true'.
 set_attribute hdl_latch_keep_feedback true /
 
@@ -69,18 +69,18 @@ set_attribute library { NangateOpenCellLibrary_typical_conditional_ecsm.lib }
 
 #set_attribute preserve false {D_CELLSL_MOSLP_typ_1_80V_25C.lib}
 #set_attribute avoid false {D_CELLSL_MOSLP_typ_1_80V_25C.lib}
-# 
+#
 
 #set_attribute avoid true FA_X1
 #set_attribute avoid true HA_X1
 # desabilitar p/ nao compressor
-# set_attribute avoid true XNOR2_X1 
+# set_attribute avoid true XNOR2_X1
 # set_attribute avoid true XNOR2_X2
 
 #Wire Delay Estimation
 # from cadence path
-set_attribute lef_library {NangateOpenCellLibrary.lef}    
-#xc018_m6_FE/xc018m6_FE.lef xc018_m6_FE/D_CELLS.lef xc018_m6_FE/IO_CELLS_3V.lef}     
+set_attribute lef_library {NangateOpenCellLibrary.lef}
+#xc018_m6_FE/xc018m6_FE.lef xc018_m6_FE/D_CELLS.lef xc018_m6_FE/IO_CELLS_3V.lef}
 #set_attr cap_table_file ******
 set_attr interconnect_mode ple /
 set_attribute hdl_track_filename_row_col true /
@@ -96,12 +96,12 @@ set_attribute hdl_track_filename_row_col true /
 ## Load RTL Design verilog or vhdl, (create a single top file to call all others)
 ####################################################################
 puts "Reading HDLs..."
-read_hdl -v2001 booth4assign_V2.v booth4assign.v booth4beta.v driverclk.v ferramenta.v const.v somadores.v
+read_hdl -v2001 booth4assign_V2.v booth4assign_V1.v booth4assign.v booth4beta.v driverclk.v ferramenta.v const.v somadores.v
 read_hdl -vhdl BoothParalelo8b.vhd BoothParalelo16b.vhd BoothParalelo32b.vhd BoothParalelo64b.vhd
 # read_hdl -vhdl somador.vhd registrador.vhd mux_2entradas.vhd filtro_croma.vhd FSM.vhd multiplicador_8bits.vhd
 # read_hdl -vhdl MULT_PF_BIN32.vhd MULT_PF_BIN64.vhd MULT_PF_HIB32m2v2.vhd MULT_PF_HIB64m2v2.vhd
-# RCA_hib10bm2v2.vhd   RCA_hib10bm2v3.vhd 
-         
+# RCA_hib10bm2v2.vhd   RCA_hib10bm2v3.vhd
+
 # chroma:  filtro_croma.vhd somador.vhd registrador.vhd RCA_radix4_10b.vhd mux_2entradas.vhd FSM.vhd
 # chroma_hibrido: eduardohibm2.vhd filtro_croma_Hibrido.vhd FSM.vhd mux_2entradas.vhd registrador.vhd somadorHibrido.vhd SumHibrido.vhd
 # luma_hibrido: filtro_luma_Hibrido.vhd eduardohibm2.vhd FSM.vhd mux_2entradas.vhd registrador.vhd somadorHibrido.vhd
@@ -130,7 +130,7 @@ report timing -lint
 #sintax: set_attribute user_sub_arch {booth | non_booth | radix8} \[find /designs* -subdesign name]
 #set_attribute user_sub_arch booth [find / -design $DESIGN]
 #set_attribute user_sub_arch booth [find / -design driverclk -subdesign ferramenta]
-# turn off Carry Save Adders:  set_attr dp_perform_csa_operations {false | true} 
+# turn off Carry Save Adders:  set_attr dp_perform_csa_operations {false | true}
  set_attr dp_perform_csa_operations false
   # within a particular subdesign:
 #set_attribute allow_csa_subdesign false [find /designs* -subdesign name]
@@ -139,7 +139,7 @@ report timing -lint
  set_attr dp_perform_speculation_operations false
 
 #############################################################################
-## Swicthing Activity (before synthesis to mapped) 
+## Swicthing Activity (before synthesis to mapped)
 #############################################################################
 ## read_tcf <TCF file name>
 ## read_saif <SAIF file name>
@@ -160,16 +160,16 @@ report power -depth 1 > $_REPORTS_PATH/RC_power_short_bef_gen.txt
 ################################################################################
 ## Power Directives- only make difference if swicthing activity file is provided
 ################################################################################
-set_attribute lp_optimize_dynamic_power_first true design $DESIGN 
+set_attribute lp_optimize_dynamic_power_first true design $DESIGN
 #set_attribute lp_clock_gating_cell [find /lib* -libcell <cg_libcell_name>] "/designs/$DESIGN"
 #set_attribute max_leakage_power 0.0 "/designs/$DESIGN"
 #this command sets the max power at 2mW. The tool will optimize a bit but it wont necessarilly reach that goal
-set_attribute max_dynamic_power 0 design $DESIGN 
+set_attribute max_dynamic_power 0 design $DESIGN
 # change switch activity; low use 50%, medium: propagate from other nodes to nodes not declared, high: propagate with more accuracy. default: low
 #set_attribute lp_power_analysis_effort {low | medium | high}
 set_attribute lp_power_analysis_effort $POW_EFF
 #set_attribute lp_power_optimization_weight <value from 0 to 1> "/designs/$DESIGN" 0.1
-set_attribute lp_power_optimization_weight 1 design $DESIGN 
+set_attribute lp_power_optimization_weight 1 design $DESIGN
 
 # Builds  detailed power models for more accurate RTL power analysis.
 # build_rtl_power_models -clean_up_netlist -design $DESIGN
@@ -179,17 +179,17 @@ set_attribute lp_power_optimization_weight 1 design $DESIGN
 # -flat  : reports power information for all modules in the current hierarchy.
 # report power -rtl_cross_reference -flat > $_REPORTS_PATH/RC_power_rtl_cross_ref.txt
 # report power -rtl > $_REPORTS_PATH/RC_power_rtl.txt
-# write_saif $DESIGN > $_OUTPUTS_PATH/rtl.saif  
+# write_saif $DESIGN > $_OUTPUTS_PATH/rtl.saif
 
  report power -rtl_cross_reference -flat > $_REPORTS_PATH/RC_power_rtl_cross_ref.txt
 #---------- removido por causar  segmentation violation ---------------
  report power -rtl > $_REPORTS_PATH/RC_power_rtl.txt
-# write_saif $DESIGN > $_OUTPUTS_PATH/rtl.saif  
+# write_saif $DESIGN > $_OUTPUTS_PATH/rtl.saif
 
 ####################################################################################################
-## Synthesizing to generic 
+## Synthesizing to generic
 ####################################################################################################
-# turn off Carry Save Adders:   
+# turn off Carry Save Adders:
 #set_attr dp_perform_csa_operations false /
 #synthesize -to_generic -eff $SYN_EFF
 #puts "Runtime & Memory after 'synthesize -to_generic'"
@@ -215,7 +215,7 @@ set_attribute lp_power_optimization_weight 1 design $DESIGN
 #######################################################################################################
 ## Incremental Synthesis
 #######################################################################################################
- synthesize -to_mapped -eff $MAP_EFF -incr   
+ synthesize -to_mapped -eff $MAP_EFF -incr
  puts "Runtime & Memory after incremental synthesis"
  timestat INCREMENTAL
 
@@ -249,7 +249,8 @@ read_vcd -static -module $DESIGN -vcd_module $DUT  ./multiplication.vcd
 
 # Report worst timing
 report timing -worst 1 -through  ferramenta/*[*] > $_REPORTS_PATH/ferramenta_timing.txt
-#report timing -worst 1 -through  boothparaleloaassign_V2/*[*] > $_REPORTS_PATH/ boothparaleloaassign_V2_timing.txt
+report timing -worst 1 -through booth_assign_modificado_v1/*[*] > $_REPORTS_PATH/V1_timing.txt
+report timing -worst 1 -through booth_assign_modificado_v2/*[*] > $_REPORTS_PATH/V2_timing.txt
 report timing -worst 1 -through  boothparaleloaassign/*[*] > $_REPORTS_PATH/boothparaleloaassign_timing.txt
 report timing > $_REPORTS_PATH/RC_timing.txt
 report area > $_REPORTS_PATH/RC_area.txt
@@ -258,7 +259,7 @@ report power > $_REPORTS_PATH/RC_power.txt
 report power -depth 1 > $_REPORTS_PATH/RC_power_short.txt
 report power -depth 2 > $_REPORTS_PATH/RC_power_level2.txt
 # report clock_gating > $_REPORTS_PATH/clock_gating.txt
-write_encounter design -basename $_RESULTS_PATH/encountere $DESIGN
+#write_encounter design -basename $_RESULTS_PATH/encountere $DESIGN
 
 #adding timescale information do generated gates for use in simulation
 #shell "sed -i '1i `timescale 1ns/10ps' $_RESULTS_PATH/udp_ip_struct.v" This line doesn't work on RC
@@ -279,5 +280,3 @@ report power -depth 1 -sort dynamic
 file copy [get_attr stdout_log /] ${_REPORTS_PATH}/.
 #exit
 ##quit
-
-d

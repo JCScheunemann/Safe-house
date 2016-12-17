@@ -74,10 +74,16 @@ output wire signed [TAM*2-1:0] S;
     //                                    .clk          (clk)
     //                                    );
 
+    booth4assign_V1    #(.TAM(TAM)) booth_assign_modificado_v1 (// .nomelah (nomeaqui)
+                                       .A           (A)  ,
+                                       .B           (B)  ,    //este é a primeira idéia, com somas sucessivas
+                                       .S           (Y)  /*,
+                                      // .clk          (clk)*/
+                                       );
 
 
 
-		booth4assign_V2    #(.TAM(TAM)) booth_assign_modificado (// .nomelah (nomeaqui)
+		booth4assign_V2    #(.TAM(TAM)) booth_assign_modificado_v2 (// .nomelah (nomeaqui)
                                        .A           (A)  ,
                                        .B           (B)  ,    //este é a primeira idéia, com somas sucessivas
                                        .S           (W)  /*,

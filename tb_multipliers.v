@@ -24,7 +24,7 @@ module tb_multipliers;
         UM_POS    =  1 ,             // one
         UM_NEG    =  2 ,             // minus one
         ALEATORIO =  3 ,             // random numbers
-        STIM_SIZE = 10;           // number of diferent stimulus in DUT default 10000
+        STIM_SIZE = 1000;           // number of diferent stimulus in DUT default 10000
   integer   i ;                      // counter for loop
 
 // Signal declarations

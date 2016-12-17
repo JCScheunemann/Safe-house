@@ -7,7 +7,7 @@
 #15MHz => 66667ps; 40MHz => 25000 ps; 50MHz => 20000 ps; 100MHz => 10000ps; 150MHZ => 6666ps; 200MHz => 5000ps; 250MHz => 4000ps; 400MHz => 2500ps
 
 #Clock SENDER - put file pin name at port:
-define_clock -period 45000 -name clk [find [find / -design $DESIGN] -port clk]
+define_clock -period 2200 -name clk [find [find / -design $DESIGN] -port clk]
 
 external_delay -clock [find / -clock clk] -output 10 [all_outputs]
 external_delay -clock [find / -clock clk] -input 10 [all_inputs]
