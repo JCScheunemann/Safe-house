@@ -58,7 +58,6 @@ module booth4assign_V1(
 	*/
 	
 	wire [TAM:0] beta  [0:(TAM>>1)-1];  				// MD ou menosMD
-	wire [TAM:0] beta0 [0:(TAM>>1)-1];  				// doisMD ou menos2MD
 	wire [TAM:0] beta1 [0:(TAM>>1)-1];  				// atraves de xor1 escolhe 2A ou A
 	wire [TAM:0] beta2 [0:(TAM>>1)-1];  				// atraves da flag escolhe beta1 e 0
 
