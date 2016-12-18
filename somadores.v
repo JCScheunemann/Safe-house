@@ -29,3 +29,4 @@ module somador( A, B, S);
 		assign S=A+B ;//+ Cin;
 	`endif
 endmodule
+
